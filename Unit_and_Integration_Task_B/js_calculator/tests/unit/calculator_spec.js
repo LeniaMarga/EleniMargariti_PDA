@@ -11,37 +11,68 @@ describe('calculator', function () {
     assert.equal(true, true)
   })
 
-  it('returns 1+3=4', function(){
-    calculator.numberClick(1);
-  //  calculator.operatorClick(+);
-    assert.equal(4, calculator.add(3))
+  it('it returns 1+4=5', function(){
+    calculator.numberClick('1');
+    calculator.operatorClick('+');
+    calculator.numberClick('4');
+    calculator.operatorClick('=');
+    assert.equal(5, calculator.runningTotal);
   })
 
-  it('returns 5-1=4', function(){
-    calculator.numberClick(5);
-    assert.equal(4, calculator.substract(1))
+  it('addition is working', function(){
+    calculator.previousTotal = 2;
+    calculator.add('4');
+    assert.equal(6, calculator.runningTotal);
   })
 
-  it('returns 2*4=8', function(){
-    calculator.numberClick(2);
-    assert.equal(8, calculator.multiply(4))
+
+  it('it returns 7-4=3', function(){
+    calculator.numberClick('7');
+    calculator.operatorClick('-');
+    calculator.numberClick('4');
+    calculator.operatorClick('=');
+    assert.equal(3, calculator.runningTotal);
   })
 
-  it('returns 4/2=2', function(){
-    calculator.numberClick(4);
-    assert.equal(2, calculator.divide(2))
+  it('it returns 8-1=7', function(){
+    calculator.previousTotal = 8;
+    calculator.subtract('1');
+    assert.equal(7, calculator.runningTotal);
   })
 
-  it('returns 2', function(){
-    assert.equal(2, calculator.numberClick(2))
+
+  it('it returns 3*5=15', function(){
+    calculator.previousTotal = 3;
+    calculator.multiply('5');
+    assert.equal(15, calculator.runningTotal);
+
   })
 
-  it('returns +', function(){
-    assert.equal(+, calculator.operatorClick(+));
+  it('it returns 21/7=3', function(){
+    calculator.previousTotal = 21;
+    calculator.divide('7');
+    assert.equal(3, calculator.runningTotal);
   })
 
-  it('returns 0', function(){
-    assert.equal(0, calculator.clearClick());
+  it('it returns 4/2*3=6', function(){
+    calculator.previousTotal = 4;
+    calculator.operatorClick('/');
+    calculator.numberClick('2');
+    calculator.operatorClick('*');
+    calculator.numberClick('3');
+    calculator.operatorClick('=');
+    assert.equal(6, calculator.runningTotal);
+  })
+
+  it('returns the number clicked', function(){
+    calculator.numberClick('2');
+    assert.equal(2, calculator.runningTotal);
+  })
+
+  it('clears all', function(){
+    calculator.previousTotal = 2;
+    calculator.clearClick();
+    assert.equal(0, calculator.runningTotal);
   })
 
 });
